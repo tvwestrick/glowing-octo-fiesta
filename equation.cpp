@@ -1,7 +1,7 @@
 #include "types.h"
 #include <iostream>
 #include <vector>
-#include <pair>
+//#include <pair> couldn't find
 
 
 int tag_parentheses( std::vector<int> &lhs_parentheses, std::vector<int> &rhs_parentheses, std::string in)
@@ -9,37 +9,37 @@ int tag_parentheses( std::vector<int> &lhs_parentheses, std::vector<int> &rhs_pa
   
   int lhs_iterator = 0;
   int rhs_iterator = 0;
-  int length = in.length();
+  int length = static_cast<int>(in.length());
   for (int i = 0; i != length; ++i)
     {
       if (in[i] == '(')
 	{
-	  lhs[lhs_iterator++] = i;
+	  lhs_parentheses[lhs_iterator++] = i;
 	}
       else if (in[i] == ')')
 	{
-	  rhs[rhs_iterator++] = i;
+	  rhs_parentheses[rhs_iterator++] = i;
 	}
     }
   if (rhs_iterator != lhs_iterator)
     {
       std::cout << "Unmatched parentheses \n";
-      return -1
+        return -1;
     }
   else
     return 0;
 }
 
-std::vector<std::pair<int>> match_pairs(std::vector<int> lhs_parentheses, std::vector<int> rhs_parentheses) {
+std::vector<std::pair<int, int>> match_pairs(std::vector<int> lhs_parentheses, std::vector<int> rhs_parentheses) {
     
-    std::vector<std::pair<int>> pairs;
+    std::vector<std::pair<int, int>> pairs;
     
-    std::pair<int>> single_pair;
+    std::pair<int, int> single_pair;
     
-    int orignal_length = lhs_parentheses.length();
+    int original_size = static_cast<int>(lhs_parentheses.size());
     
-    while(pairs.length() != orignal_length) {
-        single_pair.first = *lhs_parentheses.back();
+    while(pairs.size() != original_size) {
+        single_pair.first = lhs_parentheses.back();
         int i = 0;
         for(; rhs_parentheses[i] <= single_pair.first; ++i)
         single_pair.second = i;
@@ -47,6 +47,7 @@ std::vector<std::pair<int>> match_pairs(std::vector<int> lhs_parentheses, std::v
         lhs_parentheses.pop_back();
         rhs_parentheses.erase(rhs_parentheses.begin() + i);
     }
+    return pairs;
 }
 
 // ((())())()
@@ -54,3 +55,4 @@ std::vector<std::pair<int>> match_pairs(std::vector<int> lhs_parentheses, std::v
 Equation::Equation(std::string in)
 {
   
+}

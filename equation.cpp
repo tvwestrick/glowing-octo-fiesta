@@ -1,6 +1,7 @@
 #include "types.h"
 #include <iostream>
 #include <vector>
+#include <pair>
 
 
 int tag_parentheses( std::vector<int> &lhs_parentheses, std::vector<int> &rhs_parentheses, std::string in)
@@ -27,6 +28,25 @@ int tag_parentheses( std::vector<int> &lhs_parentheses, std::vector<int> &rhs_pa
     }
   else
     return 0;
+}
+
+std::vector<std::pair<int>> match_pairs(std::vector<int> lhs_parentheses, std::vector<int> rhs_parentheses) {
+    
+    std::vector<std::pair<int>> pairs;
+    
+    std::pair<int>> single_pair;
+    
+    int orignal_length = lhs_parentheses.length();
+    
+    while(pairs.length() != orignal_length) {
+        single_pair.first = *lhs_parentheses.back();
+        int i = 0;
+        for(; rhs_parentheses[i] <= single_pair.first; ++i)
+        single_pair.second = i;
+        pairs.push_back(single_pair);
+        lhs_parentheses.pop_back();
+        rhs_parentheses.erase(rhs_parentheses.begin() + i);
+    }
 }
 
 // ((())())()

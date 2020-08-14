@@ -19,7 +19,9 @@ class Node
 
   Node * left;
   Node * right;
-  
+    
+    std::string plaintext;
+    
   Node()
     {
       left = 0;

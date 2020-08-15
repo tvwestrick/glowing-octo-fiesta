@@ -21,4 +21,5 @@ bool tag_test1() {
     std::vector<int> right;
     std::string eq = "1 + 5 + 4";
     //NOT DONE YET
+    return 0;
 }

@@ -2,29 +2,18 @@
 #include <iostream>
 #include <vector>
 #include <cassert>
-#include <algorithm>
 
 
 //#include <pair> // couldn't find
- 
-int valid_eq(std::string &in, std::vector<char> vars) {
-    std::string eq_nospaces;
-    std::vector<char> allowed = {'1', '2', '3', '4', '5', '6', '7','8', '9', '0', '+', '-', '*', '/', '^', '(', ')', 's', 'q', 'r', 't', 'i', 'n', 'o', 'h', 'T', 'S', 'C', 'A', 'c'};
-    
-    allowed.insert(allowed.end(), vars.begin(), vars.end());
-    
+
+void elim_spaces(std::string &in) {
+    std::string nospaces;
     for(int i = 0; i < in.size(); ++i) {
-        if(std::find(allowed.begin(), allowed.end(), in.at(i)) != allowed.end())
-            eq_nospaces += in.at(i);
+        if(in.at(i) != ' ' && in.at(i) != ' ')
+            nospaces += in.at(i);
     }
-    
-    /* NOT DONE YET, STILL NEEDS TO CHECK IF 'sqrt', 'cos', 'sin', 'Tan', 'sinh'
-    are in sequence. So chars like 's' are only allowed if in "sqrt", "sin", or is a
-     variable.
-    */
+    in = nospaces;
 }
-
-
 
 int tag_parentheses( std::vector<int> &lhs_parentheses, std::vector<int> &rhs_parentheses, std::string in)
 {
